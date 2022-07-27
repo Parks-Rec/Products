@@ -1,4 +1,8 @@
+DROP DATABASE IF EXISTS products;
 
+CREATE DATABASE products;
+
+DROP TABLE IF EXISTS products, features, styles, related, photos, skus;
 
 CREATE TABLE products (
   id SERIAL NOT NULL,
@@ -24,8 +28,8 @@ CREATE TABLE styles (
   product_id INTEGER NOT NULL,
   name VARCHAR(50) NOT NULL,
   original_price VARCHAR(50) NOT NULL,
-  sale_price VARCHAR(50)
-  "default?" BOOLEAN
+  sale_price VARCHAR(50),
+  "default?" BOOLEAN NOT NULL,
   PRIMARY KEY (id)
   FOREIGN KEY (product_id) REFERENCES products(id)
 );

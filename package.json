@@ -2,7 +2,7 @@
   "name": "products",
   "version": "1.0.0",
   "description": "",
-  "main": "MONGODB.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,6 +22,8 @@
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.0",
     "morgan": "^1.10.0",
+    "pg": "^8.7.3",
+    "pg-promise": "^10.11.1",
     "postgres": "^3.2.4"
   }
 }
