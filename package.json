@@ -1,0 +1,24 @@
+{
+  "name": "products",
+  "version": "1.0.0",
+  "description": "",
+  "main": "MONGODB.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parks-Rec/Products.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Parks-Rec/Products/issues"
+  },
+  "homepage": "https://github.com/Parks-Rec/Products#readme",
+  "dependencies": {
+    "mongodb": "^4.8.1",
+    "mongoose": "^6.5.0",
+    "postgres": "^3.2.4"
+  }
+}
