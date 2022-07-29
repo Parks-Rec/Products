@@ -1,33 +1,34 @@
-const {Pool, Client} = require('pg');
-require('dotenv').config();
-
-const pool = new Pool({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: process.env.PORT
-});
+// const {Pool, Client} = require('pg');
+// const pool = require('./connect.js')
+// require('dotenv').config();
+// var express = require('express')
 
 
-pool.connect()
-.then(()=> {
-  console.log('Database connected at pool')
-})
-.catch((err) => {
-  console.log(err, 'error in database pool')
-})
 
-getAllProducts = () => {
-  var queryString = 'SELECT * FROM product'
-  pool.query(queryString)
-  .then((response) => {
-    console.log(response)
-  })
-  .catch((err) => {
-    console.log(error, 'error in get all products model')
-  })
-  pool.end();
-}
+//  var getAllProducts = async () => {
+//   var queryString = 'SELECT * FROM product'
+//    return pool.query(queryString)
+//  }
+// //   .then((response) => {
+// //     console.log(response.rows)
+// //      return response.rows
+// //   })
+// //   .catch((err) => {
+// //     console.log(err, 'error in get all products model')
+// //   })
+// // }
 
-module.exports.getAllProducts = getAllProducts;
+
+
+// // var getAllProducts =  async () => {
+// //   var queryString = 'SELECT * FROM product'
+// //    pool.query(queryString)
+// //   .then((response) => {
+// //      return response.rows
+// //   })
+// //   .catch((err) => {
+// //     console.log(err, 'error in get all products model')
+// //   })
+// // }
+
+// module.exports.getAllProducts = getAllProducts;

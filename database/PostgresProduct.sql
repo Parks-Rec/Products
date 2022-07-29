@@ -24,7 +24,7 @@ CREATE TABLE features (
   PRIMARY KEY (id),
   FOREIGN KEY (product_id) REFERENCES product(id)
 );
-/*Good  default? === default style? integer*/
+
 CREATE TABLE styles (
   id SERIAL UNIQUE NOT NULL,
   productId INTEGER NOT NULL,

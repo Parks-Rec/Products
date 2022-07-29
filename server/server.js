@@ -1,17 +1,17 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
-const router = require('./routes.js')
-require('dotenv').config();
+var router = require('./routes.js');
 
 
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use('/products', router)
+app.use(express.urlencoded({extended: true }));
 
 
+app.use('/parks', router);
 
 
-app.listen(process.env.PORT,() => {
+app.listen(process.env.PORT)
 console.log(`You are listening to ${process.env.PORT}`);
-})
+
