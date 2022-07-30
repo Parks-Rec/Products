@@ -3,26 +3,14 @@ var express = require('express')
 const {Pool, Client} = require('pg');
 const pool = require('./connect.js')
 
-
-
-// module.exports = {
-//   getAllProducts:  async (req, res) => {
-//     // console.log("++++++++++++++++++++++++++++++++++++++++++++++")
-//     try {
-//       const data = await getAllProducts.getAllProducts()
-//       res.status(200).send(data.rows)
-//     } catch (err){
-//       res.status(400).send(err)
-//     }
-//   }
-// }
-
+//Do I have to use params ?
 module.exports = {
   getAllProducts:  (req, res) => {
     var count = req.query.count || 5
-    var page = req.query.page || 1
+    var page = req.query.page - 1 || 0
     var totalProducts = count * page
-    var queryString = `SELECT * FROM product WHERE id <= ${totalProducts}`
+    // var queryString = `SELECT * FROM product WHERE id <= ${totalProducts}`
+    var queryString = `SELECT * FROM product LIMIT ${count} OFFSET ${totalProducts}`
     return pool.query(queryString)
     .then((data) => {
       return res.status(200).send(data.rows)
@@ -46,14 +34,14 @@ module.exports = {
         'feature', features.feature,
         'value', features.value
       )))
-      AS product
+      AS productObj
       FROM product
       INNER JOIN features ON product.id = features.product_id
       WHERE product.id = ${product_id}
       GROUP by product.id`;
     return pool.query(queryString)
     .then((data) => {
-      return res.status(200).send(data.rows[0].product)
+      return res.status(200).send(data.rows[0].productObj)
     })
     .catch((error) => {
       console.log(error, 'error in get  product by id')
