@@ -14,10 +14,10 @@ const pool = new Pool({
 
 pool.connect()
 .then(() => {
-  console.log('Pool your connected')
+  console.log('Pool  connected')
 })
 .catch((err) => {
-  console.log(err, 'why arent you working')
+  console.log(err, 'Pool not connected')
 })
 
 module.exports = pool
