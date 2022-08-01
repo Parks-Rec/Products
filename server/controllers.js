@@ -1,4 +1,4 @@
-const getAllProducts = require("./models.js");
+
 var express = require('express')
 const {Pool, Client} = require('pg');
 const pool = require('./connect.js')
@@ -34,25 +34,27 @@ module.exports = {
         'feature', features.feature,
         'value', features.value
       )))
-      AS productObj
+      AS product
       FROM product
       INNER JOIN features ON product.id = features.product_id
       WHERE product.id = ${product_id}
       GROUP by product.id`;
     return pool.query(queryString)
     .then((data) => {
-      return res.status(200).send(data.rows[0].productObj)
+      return res.status(200).send(data.rows[0].product)
     })
     .catch((error) => {
       console.log(error, 'error in get  product by id')
     })
-    pool.end()
+
   },
 
   getProductStyles:  (req, res) => {
     var productId = req.params.product_id;
+    console.log(productId)
+    console.log("++++++++++++++++++++++++++++++++++++++++++++++", req.params)
     var queryString = `SELECT
-    id AS product_id,
+    CAST(id AS VARCHAR(20)) AS product_id,
     (SELECT json_agg(json_build_object(
     'style_id', styles.id,
     'name', styles.name,
@@ -70,7 +72,7 @@ module.exports = {
     FROM styles
     WHERE styles.productId = ${productId}
     )
-    FROM product
+    FROM styles
     WHERE id = ${productId}
     `;
     return pool.query(queryString)
@@ -80,14 +82,12 @@ module.exports = {
     .catch((error) => {
       console.log(error, 'error in get product styles')
     })
-    pool.end()
+    // pool.end()
   },
 
 
 getRelatedProducts:  (req, res) => {
   var product_id = req.params.product_id;
-  console.log(product_id)
-  console.log("++++++++++++++++++++++++++++++++++++++++++++++", req.params.product_id)
   var queryString = `SELECT json_agg(related_product_id)
   AS related
   FROM related
