@@ -23,6 +23,7 @@ module.exports = {
 
   getProductByID:  (req, res) => {
     var product_id = req.params.product_id;
+    console.log(product_id, " server get product by id")
     var queryString = `SELECT json_build_object(
       'id', product.id,
       'name', product.name,
@@ -46,7 +47,7 @@ module.exports = {
     .catch((error) => {
       console.log(error, 'error in get  product by id')
     })
-
+    pool.end()
   },
 
   getProductStyles:  (req, res) => {
@@ -59,7 +60,7 @@ module.exports = {
     'style_id', styles.id,
     'name', styles.name,
     'original_price', styles.original_price,
-    'sale_price', styles.sale_price,
+    'sale_price', NULLIF(styles.sale_price, 'null'),
     'default?', styles.default_style,
     'photos', (SELECT json_agg(json_build_object('thumbnail_url', photos.thumbnail_url,'url', photos.url))
     FROM photos
@@ -77,6 +78,7 @@ module.exports = {
     `;
     return pool.query(queryString)
     .then((data) => {
+      console.log(data.rows[0].results[0])
       return res.status(200).send(data.rows[0])
     })
     .catch((error) => {
