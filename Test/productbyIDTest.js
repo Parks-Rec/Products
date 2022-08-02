@@ -26,6 +26,12 @@ import { sleep, check } from 'k6';
 //   });
 // }
 
+export default function () {
+  http.get('http://localhost:3001/parks/products/939170');
+  sleep(1);
+
+}
+
 export let options = {
   //A boolean specifying whether should ignore TLS verifications for VU connections
   insecureSkipTLSVerify: true,
@@ -37,7 +43,7 @@ export let options = {
       //A fixed number of iterations are executed in a specified period of time.
       executor: 'constant-arrival-rate',
       //k6 tries to start rate iterations every timeUnit period.
-      rate: '10',
+      rate: '30',
       timeUnit: '1s',
       //note: 1000 iterations per second
       //The total duration of the scenario
@@ -50,30 +56,4 @@ export let options = {
   },
 };
 
-// export default function () {
-//   http.get('http://localhost:3001/products');
-//   sleep(1);
-// }
 
-// export default function () {
-//   http.get('http://localhost:3001/parks/products/40345/styles');
-//   sleep(1);
-
-// }
-export default function () {
-  http.get('http://localhost:3001/parks/products?page=2&count=3');
-  sleep(1);
-}
-
-// export default function () {
-//   http.get('http://localhost:3001/parks/products/40344/related');
-//   sleep(1);
-
-// }
-
-
-
-
-//Running a 30-second, 10-VU(virtual user) load test
-//VUs are essentially parallel while(true) loop
-// k6 run --vus 10 --duration 30s k6.js

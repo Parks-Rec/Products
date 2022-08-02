@@ -93,3 +93,5 @@ CREATE INDEX skus_styleId_index ON skus(styleId);
 
 CREATE INDEX photos_styleId_index ON photos(styleId);
 
+CREATE INDEX related_current_product_id_index ON related(current_product_id);
+
