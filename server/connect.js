@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const pool = new Pool({
   user: "david.arredondo",
-  host: "127.0.0.1",
+  host: "ec2-204-236-151-131.us-west-1.compute.amazonaws.com",
   database: "products",
   password: process.env.PASSWORD,
   port: 5432,
