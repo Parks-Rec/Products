@@ -2,11 +2,11 @@ const {Pool, Client} = require('pg');
 require('dotenv').config();
 
 const pool = new Pool({
-  user: "david.arredondo",
-  host: "localhost",
-  database: "products",
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DATABASE,
   password: process.env.PASSWORD,
-  port: 5432,
+  port: process.env.POSTGRESPORT,
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000
