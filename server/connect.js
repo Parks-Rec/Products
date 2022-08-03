@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const pool = new Pool({
   user: "david.arredondo",
-  host: "localhost",
+  host: "127.0.0.1",
   database: "products",
   password: process.env.PASSWORD,
   port: 5432,
