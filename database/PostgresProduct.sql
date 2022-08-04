@@ -72,13 +72,13 @@ CREATE TABLE cart (
 );
 
 
-\COPY product FROM '/Users/david.arredondo/Precourse/SDC Products/Products/database/CSVdata/product.csv' WITH (FORMAT CSV, HEADER);
-\COPY features FROM '/Users/david.arredondo/Precourse/SDC Products/Products/database/CSVdata/features.csv' WITH (FORMAT CSV, HEADER);
-\COPY styles FROM '/Users/david.arredondo/Precourse/SDC Products/Products/database/CSVdata/styles.csv' WITH (FORMAT CSV, HEADER);
-\COPY related FROM '/Users/david.arredondo/Precourse/SDC Products/Products/database/CSVdata/related.csv' WITH (FORMAT CSV, HEADER);
-\COPY photos FROM '/Users/david.arredondo/Precourse/SDC Products/Products/database/CSVdata/photos.csv' WITH (FORMAT CSV, HEADER);
-\COPY skus FROM '/Users/david.arredondo/Precourse/SDC Products/Products/database/CSVdata/skus.csv' WITH (FORMAT CSV, HEADER);
-\COPY cart FROM '/Users/david.arredondo/Precourse/SDC Products/Products/database/CSVdata/cart.csv' WITH (FORMAT CSV, HEADER);
+\COPY product FROM './database/CSVdata/product.csv' WITH (FORMAT CSV, HEADER);
+\COPY features FROM './database/CSVdata/features.csv' WITH (FORMAT CSV, HEADER);
+\COPY styles FROM './database/CSVdata/styles.csv' WITH (FORMAT CSV, HEADER);
+\COPY related FROM './database/CSVdata/related.csv' WITH (FORMAT CSV, HEADER);
+\COPY photos FROM './database/CSVdata/photos.csv' WITH (FORMAT CSV, HEADER);
+\COPY skus FROM './database/CSVdata/skus.csv' WITH (FORMAT CSV, HEADER);
+\COPY cart FROM './database/CSVdata/cart.csv' WITH (FORMAT CSV, HEADER);
 
 
 CREATE INDEX product_product_id_index ON product(id);
@@ -94,4 +94,3 @@ CREATE INDEX skus_styleId_index ON skus(styleId);
 CREATE INDEX photos_styleId_index ON photos(styleId);
 
 CREATE INDEX related_current_product_id_index ON related(current_product_id);
-
